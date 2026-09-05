@@ -1,4 +1,4 @@
-# FRED Economic Intelligence Agent
+# 📊 FRED Economic Intelligence Agent
 
 An AI-powered Economic Intelligence Agent that analyzes U.S. economic indicators, uses Machine Learning to detect recessionary conditions, and uses Generative AI (Google Gemini) to explain findings in plain business language.
 
@@ -201,3 +201,76 @@ Two functions built, both strictly grounded in the snapshot JSON above — verif
 ---
 
 ## 9. Repository Structure
+
+fred-economic-intelligence-agent/
+├── app/
+│ └── streamlit_app.py
+├── data/
+│ ├── indicator_dictionary.xlsx
+│ └── processed/
+│ └── economic_dataset.csv
+├── models/
+│ ├── recession_model.pkl
+│ └── recession_model_features.pkl
+├── notebooks/
+│ ├── 01_data_collection.ipynb
+│ ├── 02_eda.ipynb
+│ ├── 03_recession_model.ipynb
+│ ├── 04_genai_explanation.ipynb
+│ └── 05_streamlit_app.ipynb
+├── src/
+│ ├── snapshot.py
+│ ├── genai_explain.py
+│ └── genai_report.py
+├── requirements.txt
+├── LICENSE
+└── README.md
+
+
+---
+
+## 10. Limitations
+
+1. **GDP forward-fill artifact:** Real GDP (`GDPC1`) is quarterly; monthly rows between releases repeat the last known value. This is visually flat but expected and clearly attributable to reporting frequency, not a data error.
+2. **Coefficient interpretation caution:** Even after multicollinearity fixes, Logistic Regression coefficients on correlated economic features should be interpreted as directionally indicative, not as precise, independent effect sizes.
+3. **Small positive-class sample:** Only 58 historical recession-months exist in the training data — real-world rarity of recessions limits the statistical power of any model trained on this data, regardless of algorithm choice.
+4. **Free-tier GenAI availability:** Gemini's free API tier can return `503 UNAVAILABLE` under high demand; retry/fallback logic mitigates but does not eliminate this.
+5. **Single-page app:** The current Streamlit app is a simplified single-page version. The full 5-page structure (Dashboard, Trends, ML Predictions, Agent Chat, Report Generator) is planned for a later phase.
+
+---
+
+## 11. Future Enhancements (Level 2 / Level 3 — Planned)
+
+**Level 2 — Expected:**
+- Inflation/unemployment forecasting model (lag-feature regression or ARIMA)
+- Anomaly detection (Z-score or Isolation Forest)
+- Agent / tool-calling layer (function-routing for user queries)
+
+**Level 3 — Advanced:**
+- Automated FRED data refresh (scheduled pipeline)
+- Historical recession similarity / clustering
+- Multi-agent architecture
+- Automated monthly report generation + alerting
+- Model monitoring and confidence/explanation layer
+
+---
+
+## 12. Tech Stack
+
+| Component | Tool |
+|---|---|
+| Data Source | FRED API (`fredapi`) |
+| Data Processing | Pandas, NumPy |
+| Visualization | Matplotlib, Seaborn |
+| ML | Scikit-learn (Logistic Regression, Decision Tree, Random Forest, Gradient Boosting) |
+| GenAI | Google Gemini (`google-genai`) |
+| UI | Streamlit |
+| Deployment | Streamlit Community Cloud |
+| Development | Google Colab |
+| Version Control | Git + GitHub |
+
+---
+
+## 13. Author
+
+**Tamojeet** — Economic Intelligence Agent, built as a structured course project.
