@@ -1,4 +1,4 @@
-# 📊 FRED Economic Intelligence Agent
+# FRED Economic Intelligence Agent
 
 An AI-powered Economic Intelligence Agent that analyzes U.S. economic indicators, uses Machine Learning to detect recessionary conditions, and uses Generative AI (Google Gemini) to explain findings in plain business language.
 
